@@ -1,0 +1,76 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    background-color: #1a1a1a;
+    padding: 1em;
+}
+
+h1 {
+    color: #adadad;
+    font-size: x-large;
+    text-align: center;
+    margin-top: 1em;
+}
+
+table {
+    border-collapse: collapse;
+    background-color: #adadad;
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    border: 2px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+th, td {
+    text-align: left;
+    padding: 1em;
+    border-bottom: 2px solid #333;
+}
+
+th {
+    background-color: #333;
+    color: #f7f7f7;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.container {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.container table {
+    border: none;
+    margin: 0;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #d9d9d9;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-top: 2em;
+}
+
+.book-info > div {
+    flex-basis: 30%;
+    padding: 1em;
+}
+
+.book-info h2 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.book-info p {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
