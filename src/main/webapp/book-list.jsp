@@ -27,7 +27,7 @@
                 <td>${book.author}</td>
                 <td>${book.date}</td>
                 <td>${book.genres}</td>
-                <td><a href="${pageContext.request.contextPath}/MVCBookApp/bookDetail?id=${book.id}">Details</a></td>
+                <td><a href="${pageContext.request.contextPath}/bookDetail?id=${book.id}">Details</a></td>
             </tr>
         </c:forEach>
         </tbody>
