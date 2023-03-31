@@ -27,11 +27,18 @@
                 <td>${book.author}</td>
                 <td>${book.date}</td>
                 <td>${book.genres}</td>
-                <td><a href="${pageContext.request.contextPath}/MVCBookApp/bookDetail?id=${book.id}">Details</a></td>
+                <td><a href="${pageContext.request.contextPath}/bookDetail?id=${book.id}">Details</a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 </div>
+<nav>
+    <ul class="page-selector">
+        <c:forEach var = "i" begin = "1" end = "${numPages}">
+            <li><a href="${pageContext.request.contextPath}/MVCBookApp/books?page=${i}">${i}</a></li>
+        </c:forEach>
+    </ul>
+</nav>
 </body>
 </html>

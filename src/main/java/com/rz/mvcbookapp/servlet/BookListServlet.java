@@ -2,6 +2,7 @@ package com.rz.mvcbookapp.servlet;
 
 import com.rz.mvcbookapp.dao.BookDAO;
 import com.rz.mvcbookapp.model.Book;
+import com.rz.mvcbookapp.util.BookListPagination;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,9 +20,16 @@ public class BookListServlet extends HttpServlet {
 
         BookDAO bookDAO = new BookDAO();
 
-        List<Book> books = bookDAO.getNumberOfBooks(1001, 10);
+        String pageParam = request.getParameter("page");
+
+        int pageNumber = pageParam == null ? 1 : Integer.parseInt(pageParam);
+
+        BookListPagination blp = new BookListPagination(bookDAO, 50);
+
+        List<Book> books = bookDAO.getNumberOfBooks(blp.getStartPage(pageNumber), blp.getPageLength());
 
         request.setAttribute("books", books);
+        request.setAttribute("numPages", blp.getNumberOfPages());
 
         // Forward the request to the JSP file
         RequestDispatcher dispatcher = request.getRequestDispatcher("/book-list.jsp");
