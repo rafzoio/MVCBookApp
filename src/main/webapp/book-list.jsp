@@ -1,9 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>All Books</title>
     <link href="css/styles.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
 <h1>All Books</h1>
@@ -36,7 +38,7 @@
 <nav>
     <ul class="page-selector">
         <c:forEach var = "i" begin = "1" end = "${numPages}">
-            <li><a href="${pageContext.request.contextPath}/MVCBookApp/books?page=${i}">${i}</a></li>
+            <li><a href="${pageContext.request.contextPath}/books?page=${i}">${i}</a></li>
         </c:forEach>
     </ul>
 </nav>

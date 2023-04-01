@@ -46,6 +46,7 @@ tr:nth-child(even) {
 .container table {
     border: none;
     margin: 0;
+    padding-bottom: 3em;
 }
 
 .book-info {
@@ -80,7 +81,7 @@ tr:nth-child(even) {
     justify-content: center;
     align-items: center;
     list-style: none;
-    padding: 0;
+    padding: 20px;
     margin: 0;
 }
 
@@ -91,23 +92,11 @@ tr:nth-child(even) {
 .page-selector a {
     display: inline-block;
     padding: 5px 10px;
-    border: 1px solid #ccc;
-    color: #333;
+    color: #e3e3e3;
     text-decoration: none;
 }
 
 .page-selector a:hover {
-    background-color: #f1f1f1;
-}
-
-.page-selector .active {
-    background-color: #333;
-    color: #fff;
-}
-
-.page-selector .disabled {
-    pointer-events: none;
-    background-color: #f1f1f1;
-    border-color: #f1f1f1;
-    color: #ccc;
+    background-color: #fafafa;
+    color: #1a1a1a;
 }
