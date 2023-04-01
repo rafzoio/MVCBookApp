@@ -1,7 +1,6 @@
 package com.rz.mvcbookapp.dao;
 
-
-import com.rz.mvcbookapp.model.Book;
+import com.rz.bookapi.model.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,9 +9,8 @@ import java.util.List;
 
 public class BookDAO {
 
-    Book oneBook = null;
+    Book book = null;
     Connection conn = null;
-    Statement stmt = null;
     String user = "zoioraph";
     String password = "hertHopl9";
     // Note none default port used, 6306 not 3306
@@ -34,7 +32,6 @@ public class BookDAO {
         try {
             // connection string for demos database, username demos, password demos
             conn = DriverManager.getConnection(url, user, password);
-            stmt = conn.createStatement();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
@@ -52,60 +49,29 @@ public class BookDAO {
         Book thisBook;
         try {
 
-            thisBook = new Book(
-                    rs.getInt("id"),
-                    rs.getString("title"),
-                    rs.getString("author"),
-                    rs.getString("date"),
-                    rs.getString("genres"),
-                    rs.getString("characters"),
-                    rs.getString("synopsis"));
+            thisBook = new Book(rs.getInt("id"), rs.getString("title"), rs.getString("author"), rs.getString("date"), rs.getString("genres"), rs.getString("characters"), rs.getString("synopsis"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return thisBook;
     }
 
-    public List<Book> getNumberOfBooks(int start, int count) {
-
-        List<Book> allBooks = new ArrayList<>();
-        openConnection();
-
-        // Create select statement and execute it
-        try {
-            String selectSQL = "select * from books where id >= " + start + " limit " + count + ";";
-            ResultSet rs1 = stmt.executeQuery(selectSQL);
-            // Retrieve the results
-            while (rs1.next()) {
-                oneBook = getNextBook(rs1);
-                allBooks.add(oneBook);
-            }
-
-            stmt.close();
-            closeConnection();
-        } catch (SQLException se) {
-            throw new RuntimeException(se);
-        }
-
-        return allBooks;
-    }
 
     public List<Book> getAllBooks() {
 
         List<Book> allBooks = new ArrayList<>();
         openConnection();
 
-        // Create select statement and execute it
         try {
-            String selectSQL = "select * from books";
-            ResultSet rs1 = stmt.executeQuery(selectSQL);
-            // Retrieve the results
+            PreparedStatement getAllBooks = conn.prepareStatement("select * from books;");
+            ResultSet rs1 = getAllBooks.executeQuery();
+
             while (rs1.next()) {
-                oneBook = getNextBook(rs1);
-                allBooks.add(oneBook);
+                book = getNextBook(rs1);
+                allBooks.add(book);
             }
 
-            stmt.close();
+            getAllBooks.close();
             closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
@@ -117,43 +83,55 @@ public class BookDAO {
     public Book getBookByID(int id) {
 
         openConnection();
-        oneBook = null;
-        // Create select statement and execute it
+        book = null;
+
         try {
-            String selectSQL = "select * from books where id=" + id;
-            ResultSet rs1 = stmt.executeQuery(selectSQL);
-            // Retrieve the results
+            PreparedStatement getBookById = conn.prepareStatement("select * from books where id=?;");
+            getBookById.setInt(1, id);
+            ResultSet rs1 = getBookById.executeQuery();
+
             while (rs1.next()) {
-                oneBook = getNextBook(rs1);
+                book = getNextBook(rs1);
             }
 
-            stmt.close();
+            getBookById.close();
             closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
 
-        return oneBook;
+        return book;
     }
 
     public void addBook(Book book) {
-		openConnection();
-		try {
-			String query = String.format("INSERT INTO books (id, title, author, date, genres, characters, synopsis) VALUES (%d, '%s', '%s', '%s', '%s', '%s', '%s')", book.getId(), book.getTitle(), book.getAuthor(), book.getDate(), book.getGenres(), book.getCharacters(), book.getSynopsis());
-			stmt.executeUpdate(query);
-			stmt.close();
-			closeConnection();
-		} catch (SQLException se) {
+        openConnection();
+        try {
+            PreparedStatement addBook = conn.prepareStatement("INSERT INTO books (title, author, date, genres, characters, synopsis) VALUES (?,?,?,?,?,?)");
+            addBook.setString(1, book.getTitle());
+            addBook.setString(2, book.getAuthor());
+            addBook.setString(3, book.getDate());
+            addBook.setString(4, book.getGenres());
+            addBook.setString(5, book.getCharacters());
+            addBook.setString(6, book.getSynopsis());
+
+            addBook.executeUpdate();
+
+            addBook.close();
+            closeConnection();
+        } catch (SQLException se) {
             throw new RuntimeException(se);
-		}
-	}
+        }
+    }
 
     public void deleteBook(int id) {
         openConnection();
         try {
-            String query = String.format("DELETE FROM books WHERE id = %d", id);
-            stmt.executeUpdate(query);
-            stmt.close();
+            PreparedStatement deleteBook = conn.prepareStatement("DELETE FROM books WHERE id = ?");
+            deleteBook.setInt(1, id);
+
+            deleteBook.executeUpdate();
+
+            deleteBook.close();
             closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
@@ -163,13 +141,46 @@ public class BookDAO {
     public void updateBook(Book book) {
         openConnection();
         try {
-            String query = String.format("UPDATE books SET title = '%s', author = '%s', date = '%s', genres = '%s', characters = '%s', synopsis = '%s' WHERE id = %d",
-                    book.getTitle(), book.getAuthor(), book.getDate(), book.getGenres(), book.getCharacters(), book.getSynopsis(), book.getId());
-            stmt.executeUpdate(query);
-            stmt.close();
+            PreparedStatement updateBook = conn.prepareStatement("UPDATE books SET title = ?, author = ?, date = ?, genres = ?, characters = ?, synopsis = ? WHERE id = ?;");
+            updateBook.setString(1, book.getTitle());
+            updateBook.setString(2, book.getAuthor());
+            updateBook.setString(3, book.getDate());
+            updateBook.setString(4, book.getGenres());
+            updateBook.setString(5, book.getCharacters());
+            updateBook.setString(6, book.getSynopsis());
+            updateBook.setInt(7, book.getId());
+
+            updateBook.executeUpdate();
+
+            updateBook.close();
             closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
+    }
+
+    public List<Book> searchBooks(String keyword) {
+
+
+        List<Book> allBooks = new ArrayList<>();
+        openConnection();
+
+        try {
+            PreparedStatement getAllBooks = conn.prepareStatement("select * from books where title like ?;");
+            getAllBooks.setString(1, "%" + keyword + "%");
+            ResultSet rs1 = getAllBooks.executeQuery();
+
+            while (rs1.next()) {
+                book = getNextBook(rs1);
+                allBooks.add(book);
+            }
+
+            getAllBooks.close();
+            closeConnection();
+        } catch (SQLException se) {
+            throw new RuntimeException(se);
+        }
+
+        return allBooks;
     }
 }
