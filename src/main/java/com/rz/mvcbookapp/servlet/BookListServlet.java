@@ -26,7 +26,7 @@ public class BookListServlet extends HttpServlet {
 
         BookListPagination blp = new BookListPagination(bookDAO, 50);
 
-        List<Book> books = bookDAO.getNumberOfBooks(blp.getStartPage(pageNumber), blp.getPageLength());
+        List<Book> books = bookDAO.getNumberOfBooks(950 + blp.getStartPage(pageNumber), blp.getPageLength());
 
         request.setAttribute("books", books);
         request.setAttribute("numPages", blp.getNumberOfPages());

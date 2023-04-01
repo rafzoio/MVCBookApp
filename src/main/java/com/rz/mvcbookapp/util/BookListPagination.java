@@ -20,6 +20,6 @@ public class BookListPagination {
     }
 
     public int getNumberOfPages() {
-        return Math.floorDiv(bookDAO.getAllBooks().size(), pageLength);
+        return Math.floorDiv(bookDAO.getAllBooks().size(), pageLength) + 1;
     }
 }
