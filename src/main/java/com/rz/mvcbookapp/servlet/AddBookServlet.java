@@ -1,6 +1,5 @@
 package com.rz.mvcbookapp.servlet;
 
-import com.google.gson.Gson;
 import com.rz.mvcbookapp.dao.BookDAO;
 import com.rz.mvcbookapp.model.Book;
 import jakarta.servlet.RequestDispatcher;
@@ -11,19 +10,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
 @WebServlet(name = "AddBook", value = "/addBook")
 public class AddBookServlet extends HttpServlet {
 
     private BookDAO bookDAO;
 
-    private Gson gson;
     @Override
     public void init() {
         bookDAO = new BookDAO();
-        gson = new Gson();
     }
 
     @Override
@@ -33,7 +28,7 @@ public class AddBookServlet extends HttpServlet {
     }
 
     @Override
-    protected  void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String title = request.getParameter("title");
         String author = request.getParameter("author");

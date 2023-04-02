@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <jsp:useBean id="books" scope="request" type="com.rz.mvcbookapp.model.Book"/>
 <jsp:useBean id="numPages" scope="request" type="java.lang.Integer"/>
 <html>

@@ -1,6 +1,5 @@
 package com.rz.mvcbookapp.servlet;
 
-import com.google.gson.Gson;
 import com.rz.mvcbookapp.dao.BookDAO;
 import com.rz.mvcbookapp.model.Book;
 import jakarta.servlet.RequestDispatcher;
