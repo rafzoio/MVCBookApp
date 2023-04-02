@@ -24,12 +24,12 @@ public class BookListServlet extends HttpServlet {
 
         int pageNumber = pageParam == null ? 1 : Integer.parseInt(pageParam);
 
-        BookListPagination blp = new BookListPagination(bookDAO, 50);
+        BookListPagination blp = new BookListPagination(bookDAO, 5);
 
         List<Book> books = bookDAO.getNumberOfBooks(950 + blp.getStartPage(pageNumber), blp.getPageLength());
 
         request.setAttribute("books", books);
-        request.setAttribute("numPages", blp.getNumberOfPages());
+        request.setAttribute("pageNumber", pageNumber);
 
         // Forward the request to the JSP file
         RequestDispatcher dispatcher = request.getRequestDispatcher("/book-list.jsp");
