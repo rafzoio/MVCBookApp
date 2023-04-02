@@ -1,6 +1,6 @@
 package com.rz.mvcbookapp.dao;
 
-import com.rz.bookapi.model.Book;
+import com.rz.mvcbookapp.model.Book;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -176,6 +176,32 @@ public class BookDAO {
             }
 
             getAllBooks.close();
+            closeConnection();
+        } catch (SQLException se) {
+            throw new RuntimeException(se);
+        }
+
+        return allBooks;
+    }
+
+    public List<Book> getNumberOfBooks(int i, int pageLength) {
+
+
+        List<Book> allBooks = new ArrayList<>();
+        openConnection();
+
+        try {
+            PreparedStatement getNumberOfBooks = conn.prepareStatement("select * from books where id >= ? limit ?");
+            getNumberOfBooks.setInt(1, i);
+            getNumberOfBooks.setInt(2, pageLength);
+            ResultSet rs1 = getNumberOfBooks.executeQuery();
+
+            while (rs1.next()) {
+                book = getNextBook(rs1);
+                allBooks.add(book);
+            }
+
+            getNumberOfBooks.close();
             closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);

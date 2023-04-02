@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="books" scope="request" type="com.rz.mvcbookapp.model.Book"/>
+<jsp:useBean id="numPages" scope="request" type="java.lang.Integer"/>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -30,7 +31,13 @@
                 <td>${book.author}</td>
                 <td>${book.date}</td>
                 <td>${book.genres}</td>
-                <td><a href="${pageContext.request.contextPath}/bookDetail?id=${book.id}">Details</a></td>
+                <td>
+                    <div>
+                        <a href="${pageContext.request.contextPath}/bookDetail?id=${book.id}">Details</a>
+                        <a href="${pageContext.request.contextPath}/updateBook?id=${book.id}">Details</a>
+                        <a href="${pageContext.request.contextPath}/deleteBook?id=${book.id}">Details</a>
+                    </div>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
@@ -38,7 +45,7 @@
 </div>
 <nav>
     <ul class="page-selector">
-        <c:forEach var = "i" begin = "1" end = "${numPages}">
+        <c:forEach var="i" begin="1" end="${numPages}">
             <li><a href="${pageContext.request.contextPath}/books?page=${i}">${i}</a></li>
         </c:forEach>
     </ul>
