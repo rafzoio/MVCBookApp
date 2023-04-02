@@ -1,52 +1,17 @@
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
-    color: #333;
     background-color: #1a1a1a;
     padding: 1em;
 }
 
 h1 {
     color: #adadad;
-    font-size: x-large;
-    text-align: center;
-    margin-top: 1em;
-}
-
-table {
-    border-collapse: collapse;
-    background-color: #adadad;
-    width: 100%;
-    margin-top: 1em;
-    margin-bottom: 2em;
-    border: 2px solid #333;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-th, td {
+    font-size: 3em;
     text-align: left;
-    padding: 1em;
-    border-bottom: 2px solid #333;
-}
-
-th {
-    background-color: #333;
-    color: #f7f7f7;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.container {
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.container table {
-    border: none;
-    margin: 0;
-    padding-bottom: 3em;
+    margin-top: 0.5em;
 }
 
 .book-info {
@@ -55,10 +20,9 @@ tr:nth-child(even) {
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: #d9d9d9;
-    padding: 1em;
+    padding: 0.5em;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    margin-top: 2em;
 }
 
 .book-info > div {
@@ -74,56 +38,4 @@ tr:nth-child(even) {
 .book-info p {
     margin-top: 0;
     margin-bottom: 0.5em;
-}
-
-.page-selector {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding: 20px;
-    margin: 0;
-}
-
-.page-selector li {
-    margin: 0 5px;
-}
-
-.page-selector a {
-    display: inline-block;
-    padding: 5px 10px;
-    color: #e3e3e3;
-    text-decoration: none;
-}
-
-.page-selector a:hover {
-    background-color: #fafafa;
-    color: #1a1a1a;
-}
-
-form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 600px;
-}
-
-input[type="submit"] {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 12px 24px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-input[type="submit"]:hover {
-    background-color: #3e8e41;
 }

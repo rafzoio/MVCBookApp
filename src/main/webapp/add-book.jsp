@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Add Book</title>
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 </head>
 <body>

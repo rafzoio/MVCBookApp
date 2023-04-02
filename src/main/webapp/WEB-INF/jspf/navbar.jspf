@@ -1,0 +1,22 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<html>
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/navbar.css">
+</head>
+<body>
+<nav class="navbar">
+    <ul class="nav-links">
+        <li><a href="#">All Books</a></li>
+        <li><a href="#">Add Book</a></li>
+    </ul>
+    <div class="searchbar">
+        <label for="search">
+            <input id="search" type="text" placeholder="Search...">
+        </label>
+        <button type="submit">Search</button>
+    </div>
+</nav>
+</body>
+</html>

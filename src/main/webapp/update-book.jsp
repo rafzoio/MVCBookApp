@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Update Book</title>
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,7 +19,7 @@
     <input type="text" id="author" name="author" value="${book.author}" required><br>
 
     <label for="date">Date:</label>
-    <input type="date" id="date" name="date" value="${book.date}"><br>
+    <input type="text" id="date" name="date" value="${book.date}"><br>
 
     <label for="genres">Genres:</label>
     <input type="text" id="genres" name="genres" value="${book.genres}"><br>

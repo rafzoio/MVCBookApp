@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
+<%@ include file="/WEB-INF/jspf/navbar.jspf" %>
 <h1>Book Details</h1>
-
 <div class="book-info">
     <div>
         <h2>ID</h2>

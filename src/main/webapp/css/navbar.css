@@ -1,0 +1,74 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    background-color: #333;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar logo */
+.navbar .logo {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Navbar links */
+.navbar .nav-links {
+    display: flex;
+    list-style-type: none;
+}
+
+.navbar .nav-links li {
+    margin-left: 15px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 12px;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #555;
+    color: white;
+    border-radius: 3px;
+}
+
+/* Searchbar container */
+.navbar .searchbar {
+    display: flex;
+    align-items: center;
+}
+
+/* Search input */
+.navbar .searchbar input[type="text"] {
+    padding: 6px 10px;
+    border: none;
+    background-color: #555;
+    color: white;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.navbar .searchbar input[type="text"]:focus {
+    outline: none;
+}
+
+/* Search button */
+.navbar .searchbar button[type="submit"] {
+    padding: 6px 12px;
+    background-color: #555;
+    color: white;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.navbar .searchbar button[type="submit"]:hover {
+    background-color: #777;
+    color: white;
+}
