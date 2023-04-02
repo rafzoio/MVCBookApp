@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>Update the book </h1>
-<form action="${pageContext.request.contextPath}/updateBook" method="post">
+<form action="${pageContext.request.contextPath}/updateBook?id=${book.id}" method="post">
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" value="${book.title}" required readonly><br>
 

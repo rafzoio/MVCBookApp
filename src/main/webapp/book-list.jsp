@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<jsp:useBean id="books" scope="request" type="com.rz.mvcbookapp.model.Book"/>
+<jsp:useBean id="books" scope="request" type="java.util.List"/>
 <jsp:useBean id="numPages" scope="request" type="java.lang.Integer"/>
 <html>
 <head>
@@ -34,8 +34,8 @@
                 <td>
                     <div>
                         <a href="${pageContext.request.contextPath}/bookDetail?id=${book.id}">Details</a>
-                        <a href="${pageContext.request.contextPath}/updateBook?id=${book.id}">Details</a>
-                        <a href="${pageContext.request.contextPath}/deleteBook?id=${book.id}">Details</a>
+                        <a href="${pageContext.request.contextPath}/updateBook?id=${book.id}">Update</a>
+                        <a href="${pageContext.request.contextPath}/deleteBook?id=${book.id}">Delete</a>
                     </div>
                 </td>
             </tr>
