@@ -2,7 +2,6 @@ package com.rz.mvcbookapp.servlet;
 
 import com.rz.mvcbookapp.dao.BookDAO;
 import com.rz.mvcbookapp.util.BookListPagination;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -23,7 +22,7 @@ public class DeleteBookServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
