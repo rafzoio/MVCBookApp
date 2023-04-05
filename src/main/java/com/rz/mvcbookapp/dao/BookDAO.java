@@ -161,7 +161,6 @@ public class BookDAO {
 
     public List<Book> searchBooks(String keyword) {
 
-
         List<Book> allBooks = new ArrayList<>();
         openConnection();
 
@@ -185,7 +184,6 @@ public class BookDAO {
     }
 
     public List<Book> getNumberOfBooks(int i, int pageLength) {
-
 
         List<Book> allBooks = new ArrayList<>();
         openConnection();
