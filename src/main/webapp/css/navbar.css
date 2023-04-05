@@ -5,6 +5,8 @@
     align-items: center;
     background-color: #333;
     font-family: Arial, sans-serif;
+    margin-outside: 5px;
+    border-radius: 5px;
 }
 
 /* Navbar logo */
@@ -18,10 +20,11 @@
 .navbar .nav-links {
     display: flex;
     list-style-type: none;
+    padding-inline-start: 10px;
 }
 
 .navbar .nav-links li {
-    margin-left: 15px;
+    margin-left: 2px;
 }
 
 .navbar .nav-links a {
@@ -40,6 +43,7 @@
 .navbar .searchbar {
     display: flex;
     align-items: center;
+    margin-right: 14px;
 }
 
 /* Search input */

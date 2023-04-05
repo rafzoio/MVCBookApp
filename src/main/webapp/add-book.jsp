@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
+<%@ include file="/WEB-INF/jspf/navbar.jspf" %>
 <h1>Add a new book</h1>
 <form action="${pageContext.request.contextPath}/addBook" method="post">
     <label for="title">Title:</label>

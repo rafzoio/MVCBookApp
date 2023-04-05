@@ -8,8 +8,8 @@
 <body>
 <nav class="navbar">
     <ul class="nav-links">
-        <li><a href="#">All Books</a></li>
-        <li><a href="#">Add Book</a></li>
+        <li><a href="${pageContext.request.contextPath}/books">All Books</a></li>
+        <li><a href="${pageContext.request.contextPath}/addBook">Add Book</a></li>
     </ul>
     <div class="searchbar">
         <label for="search">

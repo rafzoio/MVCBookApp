@@ -62,3 +62,7 @@ tr:nth-child(even) {
     background-color: #fafafa;
     color: #1a1a1a;
 }
+
+li.active a {
+    text-decoration: underline !important;
+}
