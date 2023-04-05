@@ -15,16 +15,24 @@ import java.util.List;
 
 @WebServlet(name = "BookList", value = "/books")
 public class BookListServlet extends HttpServlet {
+
+    private BookDAO bookDAO;
+
+    private BookListPagination blp;
+
+    @Override
+    public void init() {
+        bookDAO = new BookDAO();
+        blp = BookListPagination.getInstance(bookDAO);
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        BookDAO bookDAO = new BookDAO();
 
         String pageParam = request.getParameter("page");
 
         int pageNumber = pageParam == null ? 1 : Integer.parseInt(pageParam);
 
-        BookListPagination blp = new BookListPagination(bookDAO, 5);
+        blp.setCurrentPage(pageNumber);
 
         List<Book> books = bookDAO.getNumberOfBooks(950 + blp.getStartPage(pageNumber), blp.getPageLength());
 

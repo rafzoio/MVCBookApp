@@ -1,6 +1,7 @@
 package com.rz.mvcbookapp.servlet;
 
 import com.rz.mvcbookapp.dao.BookDAO;
+import com.rz.mvcbookapp.util.BookListPagination;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,10 +14,12 @@ import java.io.IOException;
 @WebServlet(name = "DeleteBook", value = "/deleteBook")
 public class DeleteBookServlet extends HttpServlet {
 
+    private BookListPagination blp;
     private BookDAO bookDAO;
     @Override
     public void init() {
         bookDAO = new BookDAO();
+        blp = BookListPagination.getInstance(bookDAO);
     }
 
     @Override
@@ -26,7 +29,6 @@ public class DeleteBookServlet extends HttpServlet {
 
         bookDAO.deleteBook(id);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/books.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect(request.getContextPath()+"/books?page="+blp.getCurrentPage());
     }
 }
