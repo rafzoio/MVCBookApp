@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <jsp:useBean id="books" scope="request" type="java.util.List"/>
 <jsp:useBean id="pageNumber" scope="request" type="java.lang.Integer"/>
+<jsp:useBean id="numberOfPages" scope="request" type="java.lang.Integer"/>
 <html>
 <head>
     <meta charset="UTF-8">
