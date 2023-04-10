@@ -11,26 +11,28 @@
 <body>
 <%@ include file="/WEB-INF/jspf/navbar.jspf" %>
 <h1>Add a new book</h1>
-<form action="${pageContext.request.contextPath}/addBook" method="post">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required><br>
+<div class="form-container">
+    <form action="${pageContext.request.contextPath}/addBook" method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br>
 
-    <label for="author">Author:</label>
-    <input type="text" id="author" name="author" required><br>
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" required><br>
 
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date"><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date"><br>
 
-    <label for="genres">Genres:</label>
-    <input type="text" id="genres" name="genres"><br>
+        <label for="genres">Genres:</label>
+        <input type="text" id="genres" name="genres"><br>
 
-    <label for="characters">Characters:</label>
-    <input type="text" id="characters" name="characters"><br>
+        <label for="characters">Characters:</label>
+        <input type="text" id="characters" name="characters"><br>
 
-    <label for="synopsis">Synopsis:</label><br>
-    <textarea id="synopsis" name="synopsis" rows="5" cols="40"></textarea><br>
+        <label for="synopsis">Synopsis:</label><br>
+        <textarea id="synopsis" name="synopsis" rows="5" cols="40"></textarea><br>
 
-    <input type="submit" value="Submit">
-</form>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 </body>
 </html>
