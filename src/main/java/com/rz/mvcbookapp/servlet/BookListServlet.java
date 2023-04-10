@@ -36,8 +36,11 @@ public class BookListServlet extends HttpServlet {
 
         List<Book> books = bookDAO.getNumberOfBooks(950 + blp.getStartPage(pageNumber), blp.getPageLength());
 
+        int numberOfPages = blp.getNumberOfPages();
+
         request.setAttribute("books", books);
         request.setAttribute("pageNumber", pageNumber);
+        request.setAttribute("numberOfPages", numberOfPages);
 
         // Forward the request to the JSP file
         RequestDispatcher dispatcher = request.getRequestDispatcher("/book-list.jsp");

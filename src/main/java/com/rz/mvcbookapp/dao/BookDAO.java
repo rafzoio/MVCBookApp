@@ -80,6 +80,29 @@ public class BookDAO {
         return allBooks;
     }
 
+    public int countBooks() {
+
+        openConnection();
+
+        int count = 0;
+
+        try {
+            PreparedStatement getAllBooks = conn.prepareStatement("select count(*) from books;");
+
+            ResultSet resultSet = getAllBooks.executeQuery();
+
+            if (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+            getAllBooks.close();
+            closeConnection();
+        } catch (SQLException se) {
+            throw new RuntimeException(se);
+        }
+
+        return count;
+    }
+
     public Book getBookByID(int id) {
 
         openConnection();

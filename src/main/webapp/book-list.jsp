@@ -55,6 +55,7 @@
                 <li class="${i == pageNumber ? 'active' : ''}"><a href="${pageContext.request.contextPath}/books?page=${i}">${i}</a></li>
         </c:forEach>
         <li><a href="${pageContext.request.contextPath}/books?page=${pageNumber+1}">Next</a></li>
+        <li><a href="${pageContext.request.contextPath}/books?page=${numberOfPages}">Last</a></li>
     </ul>
 </nav>
 </body>
