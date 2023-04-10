@@ -4,7 +4,6 @@
     <data-source source="LOCAL" name="zoioraph@mudfoot.doc.stu.mmu.ac.uk" uuid="bfb4d0d6-9207-4a94-bd52-a1112ce46406">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://mudfoot.doc.stu.mmu.ac.uk:6306/zoioraph</jdbc-url>
       <jdbc-additional-properties>
