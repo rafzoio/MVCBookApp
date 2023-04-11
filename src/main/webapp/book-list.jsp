@@ -37,7 +37,7 @@
                 <td>
                     <div style="display: flex; flex-direction: column">
                         <a href="${pageContext.request.contextPath}/bookDetail?id=${book.id}">Details</a>
-                        <a href="${pageContext.request.contextPath}/updateBook?id=${book.id}">Update</a>
+                        <a href="${pageContext.request.contextPath}/updateBook?id=${book.id}">Edit</a>
                         <a href="${pageContext.request.contextPath}/deleteBook?id=${book.id}">Delete</a>
                     </div>
                 </td>
@@ -52,10 +52,12 @@
         <c:if test="${pageNumber > 1}">
             <li><a href="${pageContext.request.contextPath}/books?page=${pageNumber-1}">Previous</a></li>
         </c:if>
-        <c:forEach var="i" begin="${(pageNumber-2) <= 1 ? 1 : (pageNumber-2)}" end="${pageNumber + 2}">
+        <c:forEach var="i" begin="${(pageNumber-2) <= 1 ? 1 : (pageNumber-2)}" end="${(pageNumber+2) >= numberOfPages ? numberOfPages : (pageNumber+2)}">
                 <li class="${i == pageNumber ? 'active' : ''}"><a href="${pageContext.request.contextPath}/books?page=${i}">${i}</a></li>
         </c:forEach>
-        <li><a href="${pageContext.request.contextPath}/books?page=${pageNumber+1}">Next</a></li>
+        <c:if test="${pageNumber < numberOfPages}">
+            <li><a href="${pageContext.request.contextPath}/books?page=${pageNumber+1}">Next</a></li>
+        </c:if>
         <li><a href="${pageContext.request.contextPath}/books?page=${numberOfPages}">Last</a></li>
     </ul>
 </nav>
