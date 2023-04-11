@@ -25,6 +25,7 @@
 
 .navbar .nav-links li {
     margin-left: 2px;
+    font-weight: bolder;
 }
 
 .navbar .nav-links a {
