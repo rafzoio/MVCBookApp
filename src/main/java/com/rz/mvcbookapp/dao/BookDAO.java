@@ -56,30 +56,6 @@ public class BookDAO {
         return thisBook;
     }
 
-
-    public List<Book> getAllBooks() {
-
-        List<Book> allBooks = new ArrayList<>();
-        openConnection();
-
-        try {
-            PreparedStatement getAllBooks = conn.prepareStatement("select * from books;");
-            ResultSet rs1 = getAllBooks.executeQuery();
-
-            while (rs1.next()) {
-                book = getNextBook(rs1);
-                allBooks.add(book);
-            }
-
-            getAllBooks.close();
-            closeConnection();
-        } catch (SQLException se) {
-            throw new RuntimeException(se);
-        }
-
-        return allBooks;
-    }
-
     public int countBooks() {
 
         openConnection();
