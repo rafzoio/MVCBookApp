@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="zoioraph@mudfoot.doc.stu.mmu.ac.uk" uuid="bfb4d0d6-9207-4a94-bd52-a1112ce46406">
+    <data-source source="LOCAL" name="GCBookDB" uuid="d68ef359-70de-4aac-8d04-ed9b71ffbf2d">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://mudfoot.doc.stu.mmu.ac.uk:6306/zoioraph</jdbc-url>
-      <jdbc-additional-properties>
-        <property name="APPROVED_DRIVER" value="mysql.8" />
-      </jdbc-additional-properties>
+      <jdbc-url>jdbc:mysql://34.105.147.73:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
