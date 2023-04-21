@@ -12,9 +12,9 @@ public class BookDAO {
     Book book = null;
     Connection conn = null;
     String user = "root";
-    String password = "password";
+    String password = "6++dW$JJ5td";
     // Note none default port used, 6306 not 3306
-    String url = "jdbc:mysql://34.105.147.73:3306/books";
+    String url = "jdbc:mysql://35.246.105.29:3306/books";
 
     public BookDAO() {
     }
