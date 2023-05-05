@@ -42,7 +42,6 @@ public class BookListServlet extends HttpServlet {
         request.setAttribute("pageNumber", pageNumber);
         request.setAttribute("numberOfPages", numberOfPages);
 
-        // Forward the request to the JSP file
         RequestDispatcher dispatcher = request.getRequestDispatcher("/book-list.jsp");
         dispatcher.forward(request, response);
     }
