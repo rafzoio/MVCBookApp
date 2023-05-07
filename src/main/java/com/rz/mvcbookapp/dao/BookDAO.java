@@ -65,32 +65,6 @@ public class BookDAO {
     }
 
     /**
-     * Returns number of books contained in the database
-     */
-    public int countBooks() {
-
-        openConnection();
-
-        int count = 0;
-
-        try {
-            PreparedStatement getAllBooks = conn.prepareStatement("select count(*) from books;");
-
-            ResultSet resultSet = getAllBooks.executeQuery();
-
-            if (resultSet.next()) {
-                count = resultSet.getInt(1);
-            }
-            getAllBooks.close();
-            closeConnection();
-        } catch (SQLException se) {
-            throw new RuntimeException(se);
-        }
-
-        return count;
-    }
-
-    /**
      * Gets book from database by id
      * @param id requested id
      * @return Book
@@ -248,6 +222,32 @@ public class BookDAO {
         }
 
         return books;
+    }
+
+    /**
+     * Returns number of books contained in the database
+     */
+    public int countBooks() {
+
+        openConnection();
+
+        int count = 0;
+
+        try {
+            PreparedStatement getAllBooks = conn.prepareStatement("select count(*) from books;");
+
+            ResultSet resultSet = getAllBooks.executeQuery();
+
+            if (resultSet.next()) {
+                count = resultSet.getInt(1);
+            }
+            getAllBooks.close();
+            closeConnection();
+        } catch (SQLException se) {
+            throw new RuntimeException(se);
+        }
+
+        return count;
     }
 }
 
