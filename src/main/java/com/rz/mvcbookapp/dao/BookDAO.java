@@ -126,12 +126,7 @@ public class BookDAO {
         openConnection();
         try {
             PreparedStatement addBook = conn.prepareStatement("INSERT INTO books (title, author, date, genres, characters, synopsis) VALUES (?,?,?,?,?,?)");
-            addBook.setString(1, book.getTitle());
-            addBook.setString(2, book.getAuthor());
-            addBook.setString(3, book.getDate());
-            addBook.setString(4, book.getGenres());
-            addBook.setString(5, book.getCharacters());
-            addBook.setString(6, book.getSynopsis());
+            populateStatementWithBook(book, addBook);
 
             addBook.executeUpdate();
 
@@ -140,6 +135,20 @@ public class BookDAO {
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
+    }
+
+    /**
+     * Inserts book attributes into prepared SQL statement
+     * @param book book to insert
+     * @param statement prepared statement
+     */
+    private static void populateStatementWithBook(Book book, PreparedStatement statement) throws SQLException {
+        statement.setString(1, book.getTitle());
+        statement.setString(2, book.getAuthor());
+        statement.setString(3, book.getDate());
+        statement.setString(4, book.getGenres());
+        statement.setString(5, book.getCharacters());
+        statement.setString(6, book.getSynopsis());
     }
 
     /**
@@ -169,12 +178,7 @@ public class BookDAO {
         openConnection();
         try {
             PreparedStatement updateBook = conn.prepareStatement("UPDATE books SET title = ?, author = ?, date = ?, genres = ?, characters = ?, synopsis = ? WHERE id = ?;");
-            updateBook.setString(1, book.getTitle());
-            updateBook.setString(2, book.getAuthor());
-            updateBook.setString(3, book.getDate());
-            updateBook.setString(4, book.getGenres());
-            updateBook.setString(5, book.getCharacters());
-            updateBook.setString(6, book.getSynopsis());
+            populateStatementWithBook(book, updateBook);
             updateBook.setInt(7, book.getId());
 
             updateBook.executeUpdate();
@@ -246,3 +250,5 @@ public class BookDAO {
         return books;
     }
 }
+
+
