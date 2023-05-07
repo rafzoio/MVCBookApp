@@ -2,6 +2,9 @@ package com.rz.mvcbookapp.util;
 
 import com.rz.mvcbookapp.dao.BookDAO;
 
+/**
+ * BookListPagination stores current page and length values and contains methods to implement pagination throughout the MVC application.
+ */
 public class BookListPagination {
     private static BookListPagination instance = null;
     private final BookDAO bookDAO;
@@ -13,6 +16,7 @@ public class BookListPagination {
         this.pageLength = pageLength;
     }
 
+    // singleton design pattern used to maintain global variables such as page number
     public static BookListPagination getInstance(BookDAO bookDAO) {
         if (instance == null) {
             instance = new BookListPagination(bookDAO, 20);
@@ -36,6 +40,7 @@ public class BookListPagination {
         this.currentPage = page;
     }
 
+    // calculates number of pages at current page length to display all books.
     public int getNumberOfPages() {
         return Math.floorDiv(bookDAO.countBooks(), pageLength) + 3;
     }

@@ -15,15 +15,17 @@ import java.io.IOException;
 public class BookDetailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // get id from parameter
         int id = Integer.parseInt(request.getParameter("id"));
 
         BookDAO bookDAO = new BookDAO();
 
+        // get book from database by id
         Book book = bookDAO.getBookByID(id);
 
-        request.setAttribute("book", book);
 
-        // Forward the request to the JSP file
+        // forward the request to the book detail page
+        request.setAttribute("book", book);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/book-detail.jsp");
         dispatcher.forward(request, response);
     }

@@ -11,15 +11,17 @@ public class BookDAO {
 
     Book book = null;
     Connection conn = null;
-    String user = "root";
-    String password = "6++dW$JJ5td";
-    // Note none default port used, 6306 not 3306
-    String url = "jdbc:mysql://35.246.105.29:3306/books";
+    String user = "zoioraph";
+    String password = "hertHopl9";
+    String url = "jdbc:mysql://mudfoot.doc.stu.mmu.ac.uk:6306/zoioraph";
 
     public BookDAO() {
     }
 
 
+    /**
+     * Method to initialise connection to database.
+     */
     private void openConnection() {
         // loading jdbc driver for mysql
         try {
@@ -28,15 +30,16 @@ public class BookDAO {
             throw new RuntimeException(e);
         }
 
-        // connecting to database
         try {
-            // connection string for demos database, username demos, password demos
             conn = DriverManager.getConnection(url, user, password);
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
     }
 
+    /**
+     * Method to close connection to database
+      */
     private void closeConnection() {
         try {
             conn.close();
@@ -45,6 +48,11 @@ public class BookDAO {
         }
     }
 
+    /**
+     * Method to generate a book object from jdbc result set
+     * @param rs
+     * @return Book
+     */
     private Book getNextBook(ResultSet rs) {
         Book thisBook;
         try {
@@ -56,6 +64,9 @@ public class BookDAO {
         return thisBook;
     }
 
+    /**
+     * Returns number of books contained in the database
+     */
     public int countBooks() {
 
         openConnection();
@@ -79,6 +90,11 @@ public class BookDAO {
         return count;
     }
 
+    /**
+     * Gets book from database by id
+     * @param id
+     * @return Book
+     */
     public Book getBookByID(int id) {
 
         openConnection();
@@ -102,6 +118,10 @@ public class BookDAO {
         return book;
     }
 
+    /**
+     * Adds new book to database
+     * @param book
+     */
     public void addBook(Book book) {
         openConnection();
         try {
@@ -122,6 +142,10 @@ public class BookDAO {
         }
     }
 
+    /**
+     * Deletes a book from the database by id
+     * @param id
+     */
     public void deleteBook(int id) {
         openConnection();
         try {
@@ -137,6 +161,10 @@ public class BookDAO {
         }
     }
 
+    /**
+     * Updates a book already present in the database.
+     * @param book
+     */
     public void updateBook(Book book) {
         openConnection();
         try {
@@ -158,9 +186,14 @@ public class BookDAO {
         }
     }
 
+    /**
+     * Returns a list of books with titles matching the search keyword.
+     * @param keyword
+     * @return matchingBooks
+     */
     public List<Book> searchBooks(String keyword) {
 
-        List<Book> allBooks = new ArrayList<>();
+        List<Book> matchingBooks = new ArrayList<>();
         openConnection();
 
         try {
@@ -170,7 +203,7 @@ public class BookDAO {
 
             while (rs1.next()) {
                 book = getNextBook(rs1);
-                allBooks.add(book);
+                matchingBooks.add(book);
             }
 
             getAllBooks.close();
@@ -179,12 +212,18 @@ public class BookDAO {
             throw new RuntimeException(se);
         }
 
-        return allBooks;
+        return matchingBooks;
     }
 
+    /**
+     * Gets a number of books starting from a certain id
+     * @param i
+     * @param pageLength
+     * @return books
+     */
     public List<Book> getNumberOfBooks(int i, int pageLength) {
 
-        List<Book> allBooks = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         openConnection();
 
         try {
@@ -195,7 +234,7 @@ public class BookDAO {
 
             while (rs1.next()) {
                 book = getNextBook(rs1);
-                allBooks.add(book);
+                books.add(book);
             }
 
             getNumberOfBooks.close();
@@ -204,6 +243,6 @@ public class BookDAO {
             throw new RuntimeException(se);
         }
 
-        return allBooks;
+        return books;
     }
 }

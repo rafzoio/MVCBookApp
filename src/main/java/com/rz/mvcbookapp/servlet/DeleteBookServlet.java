@@ -17,6 +17,7 @@ public class DeleteBookServlet extends HttpServlet {
     private BookDAO bookDAO;
     @Override
     public void init() {
+        // initialising dependencies
         bookDAO = new BookDAO();
         blp = BookListPagination.getInstance(bookDAO);
     }
@@ -24,10 +25,12 @@ public class DeleteBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+        // get id to delete
         int id = Integer.parseInt(request.getParameter("id"));
 
         bookDAO.deleteBook(id);
 
+        // navigate to current page stored in pagination class.
         response.sendRedirect(request.getContextPath()+"/books?page="+blp.getCurrentPage());
     }
 }

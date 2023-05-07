@@ -25,14 +25,16 @@ public class SearchResultsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        // get search string from request parameter
         String searchQuery = request.getParameter("q");
 
+        // get list of books matching string
         List<Book> books = bookDAO.searchBooks(searchQuery);
 
+
+        // forward list of matching books to the search-list jsp
         request.setAttribute("books", books);
         request.setAttribute("searchQuery", searchQuery);
-
-        // Forward the request to the JSP file
         RequestDispatcher dispatcher = request.getRequestDispatcher("/search-list.jsp");
         dispatcher.forward(request, response);
     }

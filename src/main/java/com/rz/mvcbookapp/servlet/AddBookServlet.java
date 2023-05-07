@@ -23,13 +23,14 @@ public class AddBookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // navigate user to add book page
         RequestDispatcher dispatcher = request.getRequestDispatcher("/add-book.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
+        // process post request containing new book data
         String title = request.getParameter("title");
         String author = request.getParameter("author");
         String date = request.getParameter("date");
@@ -39,6 +40,7 @@ public class AddBookServlet extends HttpServlet {
 
         bookDAO.addBook(new Book(title, author, date, genres, characters, synopsis));
 
+        // redirect to book list page
         response.sendRedirect(request.getContextPath() + "/books");
     }
 
