@@ -2,7 +2,6 @@ package com.rz.mvcbookapp.servlet;
 
 import com.rz.mvcbookapp.dao.BookDAO;
 import com.rz.mvcbookapp.util.BookListPagination;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

@@ -50,7 +50,7 @@ public class BookDAO {
 
     /**
      * Method to generate a book object from jdbc result set
-     * @param rs
+     * @param rs result set
      * @return Book
      */
     private Book getNextBook(ResultSet rs) {
@@ -92,7 +92,7 @@ public class BookDAO {
 
     /**
      * Gets book from database by id
-     * @param id
+     * @param id requested id
      * @return Book
      */
     public Book getBookByID(int id) {
@@ -120,7 +120,7 @@ public class BookDAO {
 
     /**
      * Adds new book to database
-     * @param book
+     * @param book new book
      */
     public void addBook(Book book) {
         openConnection();
@@ -144,7 +144,7 @@ public class BookDAO {
 
     /**
      * Deletes a book from the database by id
-     * @param id
+     * @param id requested id
      */
     public void deleteBook(int id) {
         openConnection();
@@ -163,7 +163,7 @@ public class BookDAO {
 
     /**
      * Updates a book already present in the database.
-     * @param book
+     * @param book book with updated attributes
      */
     public void updateBook(Book book) {
         openConnection();
@@ -188,7 +188,7 @@ public class BookDAO {
 
     /**
      * Returns a list of books with titles matching the search keyword.
-     * @param keyword
+     * @param keyword text string entered by user to be matched with book title
      * @return matchingBooks
      */
     public List<Book> searchBooks(String keyword) {
@@ -217,18 +217,18 @@ public class BookDAO {
 
     /**
      * Gets a number of books starting from a certain id
-     * @param i
-     * @param pageLength
+     * @param startId id to start page from
+     * @param pageLength length of page to be queried from database
      * @return books
      */
-    public List<Book> getNumberOfBooks(int i, int pageLength) {
+    public List<Book> getNumberOfBooks(int startId, int pageLength) {
 
         List<Book> books = new ArrayList<>();
         openConnection();
 
         try {
             PreparedStatement getNumberOfBooks = conn.prepareStatement("select * from books where id >= ? limit ?");
-            getNumberOfBooks.setInt(1, i);
+            getNumberOfBooks.setInt(1, startId);
             getNumberOfBooks.setInt(2, pageLength);
             ResultSet rs1 = getNumberOfBooks.executeQuery();
 
