@@ -1,5 +1,6 @@
 .navbar {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     width: 100%;
     align-items: center;
@@ -43,6 +44,7 @@
 /* Searchbar container */
 .navbar .searchbar {
     display: flex;
+    flex-direction: row;
     align-items: center;
     margin-right: 14px;
 }

@@ -11,14 +11,12 @@
         <li><a href="${pageContext.request.contextPath}/books">All Books</a></li>
         <li><a href="${pageContext.request.contextPath}/addBook">Add Book</a></li>
     </ul>
-    <div class="searchbar">
-        <form action="${pageContext.request.contextPath}/search" method="get">
-            <label for="search">
-                <input required id="search" name="q" type="text" placeholder="Search...">
-            </label>
-            <button type="submit">Search</button>
-        </form>
-    </div>
+    <form class="searchbar"action="${pageContext.request.contextPath}/search" method="get">
+        <label for="search">
+            <input required id="search" name="q" type="text" placeholder="Search...">
+        </label>
+        <button type="submit">Search</button>
+    </form>
 </nav>
 </body>
 </html>

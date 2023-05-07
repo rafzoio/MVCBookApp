@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="GCBookDB" uuid="eed66cc0-d669-4d3d-b640-b7e3c2e08e75">
+    <data-source source="LOCAL" name="@35.189.96.150" uuid="9df0dc3e-f211-4d50-9bc4-27a1bb90415c">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://35.246.105.29:3306/</jdbc-url>
+      <jdbc-url>jdbc:mysql://35.189.96.150:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
