@@ -11,9 +11,9 @@ public class BookDAO {
 
     Book book = null;
     Connection conn = null;
-    String user = "zoioraph";
-    String password = "hertHopl9";
-    String url = "jdbc:mysql://mudfoot.doc.stu.mmu.ac.uk:6306/zoioraph";
+    String user = "root";
+    String password = "aIBG\"|>/j[1mb\\Zo";
+    String url = "jdbc:mysql://35.189.96.150:3306/books";
 
     public BookDAO() {
     }

@@ -42,6 +42,6 @@ public class BookListPagination {
 
     // calculates number of pages at current page length to display all books.
     public int getNumberOfPages() {
-        return Math.floorDiv(bookDAO.countBooks(), pageLength) + 3;
+        return Math.ceilDiv(bookDAO.countBooks(), pageLength) + 1;
     }
 }
