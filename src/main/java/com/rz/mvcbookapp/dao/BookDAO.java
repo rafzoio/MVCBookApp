@@ -10,42 +10,8 @@ import java.util.List;
 public class BookDAO {
 
     Book book = null;
-    Connection conn = null;
-    String user = "root";
-    String password = "aIBG\"|>/j[1mb\\Zo";
-    String url = "jdbc:mysql://35.189.96.150:3306/books";
 
     public BookDAO() {
-    }
-
-
-    /**
-     * Method to initialise connection to database.
-     */
-    private void openConnection() {
-        // loading jdbc driver for mysql
-        try {
-            Class.forName("com.mysql.jdbc.Driver").getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-        } catch (SQLException se) {
-            throw new RuntimeException(se);
-        }
-    }
-
-    /**
-     * Method to close connection to database
-      */
-    private void closeConnection() {
-        try {
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     /**
@@ -70,11 +36,9 @@ public class BookDAO {
      * @return Book
      */
     public Book getBookByID(int id) {
-
-        openConnection();
         book = null;
 
-        try {
+        try (Connection conn = DBCPDataSource.getConnection()) {
             PreparedStatement getBookById = conn.prepareStatement("select * from books where id=?;");
             getBookById.setInt(1, id);
             ResultSet rs1 = getBookById.executeQuery();
@@ -84,7 +48,6 @@ public class BookDAO {
             }
 
             getBookById.close();
-            closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
@@ -97,15 +60,13 @@ public class BookDAO {
      * @param book new book
      */
     public void addBook(Book book) {
-        openConnection();
-        try {
+        try (Connection conn = DBCPDataSource.getConnection()) {
             PreparedStatement addBook = conn.prepareStatement("INSERT INTO books (title, author, date, genres, characters, synopsis) VALUES (?,?,?,?,?,?)");
             populateStatementWithBook(book, addBook);
 
             addBook.executeUpdate();
 
             addBook.close();
-            closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
@@ -130,15 +91,13 @@ public class BookDAO {
      * @param id requested id
      */
     public void deleteBook(int id) {
-        openConnection();
-        try {
+        try (Connection conn = DBCPDataSource.getConnection()) {
             PreparedStatement deleteBook = conn.prepareStatement("DELETE FROM books WHERE id = ?");
             deleteBook.setInt(1, id);
 
             deleteBook.executeUpdate();
 
             deleteBook.close();
-            closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
@@ -149,8 +108,7 @@ public class BookDAO {
      * @param book book with updated attributes
      */
     public void updateBook(Book book) {
-        openConnection();
-        try {
+        try (Connection conn = DBCPDataSource.getConnection()) {
             PreparedStatement updateBook = conn.prepareStatement("UPDATE books SET title = ?, author = ?, date = ?, genres = ?, characters = ?, synopsis = ? WHERE id = ?;");
             populateStatementWithBook(book, updateBook);
             updateBook.setInt(7, book.getId());
@@ -158,7 +116,6 @@ public class BookDAO {
             updateBook.executeUpdate();
 
             updateBook.close();
-            closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
@@ -172,9 +129,8 @@ public class BookDAO {
     public List<Book> searchBooks(String keyword) {
 
         List<Book> matchingBooks = new ArrayList<>();
-        openConnection();
 
-        try {
+        try (Connection conn = DBCPDataSource.getConnection()) {
             PreparedStatement getAllBooks = conn.prepareStatement("select * from books where title like ?;");
             getAllBooks.setString(1, "%" + keyword + "%");
             ResultSet rs1 = getAllBooks.executeQuery();
@@ -185,7 +141,6 @@ public class BookDAO {
             }
 
             getAllBooks.close();
-            closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
@@ -202,9 +157,8 @@ public class BookDAO {
     public List<Book> getNumberOfBooks(int startId, int pageLength) {
 
         List<Book> books = new ArrayList<>();
-        openConnection();
 
-        try {
+        try (Connection conn = DBCPDataSource.getConnection()) {
             PreparedStatement getNumberOfBooks = conn.prepareStatement("select * from books where id >= ? limit ?");
             getNumberOfBooks.setInt(1, startId);
             getNumberOfBooks.setInt(2, pageLength);
@@ -216,7 +170,6 @@ public class BookDAO {
             }
 
             getNumberOfBooks.close();
-            closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
@@ -229,11 +182,9 @@ public class BookDAO {
      */
     public int countBooks() {
 
-        openConnection();
-
         int count = 0;
 
-        try {
+        try (Connection conn = DBCPDataSource.getConnection()) {
             PreparedStatement getAllBooks = conn.prepareStatement("select count(*) from books;");
 
             ResultSet resultSet = getAllBooks.executeQuery();
@@ -242,7 +193,6 @@ public class BookDAO {
                 count = resultSet.getInt(1);
             }
             getAllBooks.close();
-            closeConnection();
         } catch (SQLException se) {
             throw new RuntimeException(se);
         }
